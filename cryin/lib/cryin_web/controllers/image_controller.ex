@@ -5,7 +5,6 @@ defmodule CryinWeb.ImageController do
 
   alias Cryin.Drawer
 
-
   def generate(conn = %{method: "POST"}, _params) do
     path = "./assets/static/images/"
 
@@ -23,16 +22,16 @@ defmodule CryinWeb.ImageController do
     json(conn, %{message: msg})
   end
 
-  def generate_rects(conn = %{method: "POST"}, _params) do
+  def generate_rects(conn = %{method: "POST"}, %{"players_num" => num}) do
     path = "./assets/static/images/"
 
     %Mogrify.Image{path: "rect.png", ext: "png"}
-    |> custom("size", "1200x800")
+    |> custom("size", "1600x1200")
     |> canvas("white")
-    |> Drawer.draw_rect()
+    |> Drawer.draw_rects(num)
     |> create(path: path)
 
     msg = "Created rect.png in: " <> path
-    json(conn, %{message: msg})
+    json(conn, %{message: msg, num: num})
   end
 end
