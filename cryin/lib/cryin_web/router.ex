@@ -20,7 +20,9 @@ defmodule CryinWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", CryinWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", CryinWeb do
+    pipe_through :api
+
+    post "/image/gen", ImageController, :generate
+  end
 end
