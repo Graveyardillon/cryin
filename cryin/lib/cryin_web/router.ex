@@ -24,5 +24,6 @@ defmodule CryinWeb.Router do
     pipe_through :api
 
     post "/image/gen", ImageController, :generate
+    post "/image/rects", ImageController, :generate_rects
   end
 end
