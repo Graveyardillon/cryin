@@ -1,2 +1,2 @@
 # cryin'
-## Tournament bracket generator engine
+Tournament bracket generator engine
