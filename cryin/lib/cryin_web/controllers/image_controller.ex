@@ -13,12 +13,6 @@ defmodule CryinWeb.ImageController do
   Generate a diagram.
   """
   def generate_diagram(conn = %{method: "POST"}, %{"players_num" => num}) do
-    # Create a banner from image_sources/banner.png
-    open(@source_path <> "banner.png")
-    |> IO.inspect
-    |> resize("400x100")
-    |> create(path: @path)
-    
     banner_path = @path <> "banner.png"
 
     # Create a canvas
