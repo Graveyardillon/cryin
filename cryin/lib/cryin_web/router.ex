@@ -23,7 +23,10 @@ defmodule CryinWeb.Router do
   scope "/api", CryinWeb do
     pipe_through :api
 
-    post "/image/gen", ImageController, :generate
-    post "/image/rects", ImageController, :generate_rects
+    post "/image/gen/diagram", ImageController, :generate_diagram
+
+    # DEBUG
+    post "/debug/soft_corner", ImageController, :debug_soft_corner
+    post "/debug/image/gen", ImageController, :debug_generate
   end
 end
