@@ -9,19 +9,18 @@ defmodule Cryin.Drawer do
   @line_length 80
   @east_space 300
 
-  # NOTE: Assume num is 8
-  def create_canvas(image) do
+  def create_canvas(image, num) do
     canvas_width  = @offx + @width + @line_length*4 + @east_space
-    canvas_height = @offy*2 + @height*8 + @distance*7
+    canvas_height = @offy*2 + @height*num + @distance*(num-1)
 
     image
     |> custom("size", "#{canvas_width}x#{canvas_height}")
     |> canvas("#ECF0F3")
   end
 
-  def merge_banners(image, banner_path) do
+  def merge_banners(image, banner_path, num) do
     image
-    |> merge_banner(banner_path, 8)
+    |> merge_banner(banner_path, num)
   end
 
   defp merge_banner(image, banner_path, num, count \\ 0) do
