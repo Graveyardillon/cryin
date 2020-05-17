@@ -13,16 +13,14 @@ defmodule CryinWeb.ImageController do
   Generate a diagram.
   """
   def generate_diagram(conn = %{method: "POST"}, %{"players_num" => num}) do
-    banner_path = @path <> "banner.png"
+    banner_path = @source_path <> "banner.png"
 
     # Create a canvas
     %Mogrify.Image{path: "canvas.png", ext: "png"}
-    |> custom("size", "1600x1200")
-    |> canvas("#ECF0F3")
-    |> image_operator("convert #{banner_path} -gravity northwest -geometry +100+50 -compose over -composite")
+    |> Drawer.create_canvas()
+    |> Drawer.merge_banner(banner_path)
     |> create(path: @path)
 
-    msg = "Created rect.png in: " <> @path
     json(conn, %{message: "ok", num: num})
   end
   def generate_diagram(conn, _params), do: json(conn, %{message: "Parameters are required."})

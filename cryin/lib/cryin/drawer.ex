@@ -3,25 +3,15 @@ defmodule Cryin.Drawer do
 
   @width 400
   @height 100
-  @banner_image_path "./assets/static/images/soft_corner.png"
 
-  def draw_rects(image, num) do
-    draw_player_rects(image, num)
+  def create_canvas(image) do
+    image
+    |> custom("size", "1600x1200")
+    |> canvas("#ECF0F3")
   end
 
-  defp draw_player_rects(image, num, count \\ 0) do
-    if num == count do
-      image
-    else
-      # Set offset of each rectangle
-      difw = 120
-      difh = 120
-      offw = difw
-      offh = (@height + 30) * count + difh
-
-      image
-      |> image_operator("convert -size: 25x100 #{@banner_image_path} \ ")
-      |> draw_player_rects(num, count+1)
-    end
+  def merge_banner(image, banner_path) do
+    image
+    |> image_operator("convert #{banner_path} -gravity northwest -geometry +100+50 -compose over -composite")
   end
 end
