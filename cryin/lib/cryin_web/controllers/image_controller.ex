@@ -18,7 +18,7 @@ defmodule CryinWeb.ImageController do
     # Create a canvas
     %Mogrify.Image{path: "canvas.png", ext: "png"}
     |> Drawer.create_canvas()
-    |> Drawer.merge_banner(banner_path)
+    |> Drawer.merge_banners(banner_path)
     |> create(path: @path)
 
     json(conn, %{message: "ok", num: num})
