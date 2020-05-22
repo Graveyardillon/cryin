@@ -22,7 +22,7 @@ defmodule CryinWeb.ImageController do
     json(conn, %{message: msg})
   end
 
-  def generate_rects(conn = %{method: "POST"}, %{"players_num" => num}) do
+  def generate_rects(conn = %{method: "POST"}, %{"player_num" => num}) do
     path = "./assets/static/images/"
 
     %Mogrify.Image{path: "rect.png", ext: "png"}
